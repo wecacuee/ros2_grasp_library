@@ -31,8 +31,7 @@ $SUDO apt-get update && $SUDO apt-get install -y libmkldnn-dev
 #   wget -t 3 -c https://github.com/intel/compute-runtime/releases/download/19.41.14441/intel-opencl_19.41.14441_amd64.deb &&\
 #   wget -t 3 -c https://github.com/intel/compute-runtime/releases/download/19.41.14441/intel-ocloc_19.41.14441_amd64.deb &&\
 #   $SUDO dpkg -i *.deb
-$SUDO apt-get update && $SUDO apt-get install -y apt-get install
-intel-opencl-icd
+$SUDO apt-get update && $SUDO apt-get install -y apt-get install intel-opencl-icd
 
 # #install cmake 3.11
 # if [ $(cmake --version|grep "version"|awk '{print $3}') != "3.14.3"  ];then
