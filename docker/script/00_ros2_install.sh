@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DEPS_DIR=${DEPS_PATH}
-ros2_version=dashing
+ros2_version=foxy
 SUDO=$1
 if [ "$SUDO" == "sudo" ];then
 	SUDO="sudo"
@@ -18,7 +18,7 @@ $SUDO apt-get update && $SUDO apt-get install -y curl gnupg2 lsb-release &&\
     curl http://repo.ros2.org/repos.key | $SUDO apt-key add -
 
 # Add the repository to sources list
-$SUDO sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
+$SUDO sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2.list'
 
 # Install development tools and ROS tools
 $SUDO apt-get update && $SUDO apt-get install -y \
@@ -28,4 +28,4 @@ $SUDO apt-get update && $SUDO apt-get install -y \
     
 # Install ROS 2 packages
 echo "install $ros2_version"
-$SUDO apt-get update && $SUDO apt-get install -y ros-${ros2_version}-desktop
+$SUDO apt-get update && $SUDO apt-get install -y ros-${ros2_version}-desktop wget

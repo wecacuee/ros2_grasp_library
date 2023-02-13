@@ -11,14 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+cmake_minimum_required(VERSION 3.5)
+project(recognize_pick)
 
 option(BUILD_RECOGNIZE_PICK "build recognize_pick app" OFF)
 if(NOT BUILD_RECOGNIZE_PICK STREQUAL "ON")
   return()
 endif()
 
-cmake_minimum_required(VERSION 3.5)
-project(recognize_pick)
 
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
