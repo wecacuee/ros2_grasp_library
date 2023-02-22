@@ -1,9 +1,10 @@
 #!/bin/bash
 
 DEPS_DIR=${DEPS_PATH}
-MKL_URL=https://github.com/intel/mkl-dnn/releases/download/v0.19/mklml_lnx_2019.0.5.20190502.tgz
-MKL_VERSION=mklml_lnx_2019.0.5.20190502
-OPENVINO_VERSION=2019_R3.1
+# NOT USED
+# MKL_URL=https://github.com/intel/mkl-dnn/releases/download/v0.19/mklml_lnx_2019.0.5.20190502.tgz
+# MKL_VERSION=mklml_lnx_2019.0.5.20190502
+OPENVINO_VERSION=2022.3.0
 
 SUDO=$1
 if [ "$SUDO" == "" ];then
