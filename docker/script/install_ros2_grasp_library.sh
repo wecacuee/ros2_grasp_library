@@ -11,6 +11,13 @@ fi
 
 shift
 
+SUDO=$1
+if [ "$SUDO" == "sudo" ];then
+	SUDO="sudo"
+else
+	SUDO=""
+fi
+
 # mkdir deps-path
 echo "DEPS_PATH = $deps_path"
 mkdir -p $deps_path
@@ -21,21 +28,26 @@ echo "CURRENT_DIR = ${CURRENT_DIR}"
 
 # install ros2 dashing
 bash ${CURRENT_DIR}/00_ros2_install.sh $@
+#  
+#  # instal eigen 3.2
+#  bash ${CURRENT_DIR}/10_eigen_install.sh $@
+$SUDO apt-get update && $SUDO apt-get install -y libeigen3-dev
 
-# instal eigen 3.2
-bash ${CURRENT_DIR}/10_eigen_install.sh $@
+#  # install libpcl 1.8.1
+#  bash ${CURRENT_DIR}/11_libpcl_install.sh $@
+$SUDO apt-get update && $SUDO apt-get install -y libpcl-dev
 
-# install libpcl 1.8.1
-bash ${CURRENT_DIR}/11_libpcl_install.sh $@
-
-# install opencv 4.1.2 
-bash ${CURRENT_DIR}/12_opencv_install.sh $@
+#  
+#  # install opencv 4.1.2 
+#  bash ${CURRENT_DIR}/12_opencv_install.sh $@
+$SUDO apt-get update && $SUDO apt-get install -y libopencv-dev
 
 # install openvino 2019_R3.1
 bash ${CURRENT_DIR}/13_openvino_install.sh $@
 
 # install librealsense 2.31
-bash ${CURRENT_DIR}/20_librealsense_install.sh $@
+# bash ${CURRENT_DIR}/20_librealsense_install.sh $@
+$SUDO apt-get update && $SUDO apt-get install -y librealsense-dev
 
 # install gpg
 bash ${CURRENT_DIR}/30_gpg_install.sh $@
