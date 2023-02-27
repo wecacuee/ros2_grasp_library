@@ -347,11 +347,7 @@ void PoseEstimator::imageCB_CHARUCO(const sensor_msgs::msg::Image::ConstSharedPt
       cv::Ptr<cv::aruco::CharucoBoard> board = cv::aruco::CharucoBoard::create(
           width_, height_, charuco_board_square_size_, charuco_board_marker_size_, dictionary);
       cv::Ptr<cv::aruco::DetectorParameters> params_ptr(new cv::aruco::DetectorParameters());
-#if CV_MINOR_VERSION == 2
-      params_ptr->doCornerRefinement = true;
-#else
       params_ptr->cornerRefinementMethod = cv::aruco::CORNER_REFINE_SUBPIX;
-#endif
       std::vector<int> ids;
       std::vector<std::vector<cv::Point2f>> corners;
       cv::aruco::detectMarkers(cv_ptr->image, dictionary, corners, ids, params_ptr);

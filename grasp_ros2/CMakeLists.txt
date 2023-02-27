@@ -50,6 +50,8 @@ find_package(tf2_geometry_msgs REQUIRED)
 find_package(trajectory_msgs REQUIRED)
 find_package(pcl_conversions REQUIRED)
 find_package(Eigen3 REQUIRED)
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 # GPG
 find_library(gpg_LIBRARIES grasp_candidates_generator)
@@ -59,7 +61,7 @@ find_library(gpd_LIBRARIES grasp_pose_detection)
 find_path(gpd_INCLUDE_DIRS gpd/grasp_detector.h)
 
 # PCL
-find_package(PCL 1.8.1 EXACT)
+find_package(PCL 1.10)
 include_directories(${PCL_INCLUDE_DIRS})
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
@@ -94,6 +96,12 @@ add_library(${libgrasp_detect} SHARED
   src/grasp_detector_gpd.cpp)
 target_compile_definitions(${libgrasp_detect}
   PRIVATE "GRASP_ROS2_BUILDING_DLL")
+
+set(PEOPLE_MSGS_MAYBE "")
+if(BUILD_RECOGNIZE_PICK STREQUAL "ON")
+    set(PEOPLE_MSGS_MAYBE "people_msgs")
+endif()
+
 ament_target_dependencies(${libgrasp_detect}
   "class_loader"
   "rclcpp"
@@ -101,9 +109,7 @@ ament_target_dependencies(${libgrasp_detect}
   "grasp_msgs"
   "sensor_msgs"
   "moveit_msgs"
-if(BUILD_RECOGNIZE_PICK STREQUAL "ON")
-  "people_msgs"
-endif()
+  ${PEOPLE_MSGS_MAYBE}
   "visualization_msgs")
 target_link_libraries(${libgrasp_detect}
   ${gpg_LIBRARIES}
