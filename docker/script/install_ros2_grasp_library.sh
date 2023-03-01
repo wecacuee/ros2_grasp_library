@@ -47,7 +47,10 @@ bash ${CURRENT_DIR}/13_openvino_install.sh $@
 
 # install librealsense 2.31
 # bash ${CURRENT_DIR}/20_librealsense_install.sh $@
-$SUDO apt-get update && $SUDO apt-get install -y librealsense-dev
+$SUDO apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
+$SUDO add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u
+$SUDO apt-get update && $SUDO apt-get install -y librealsense2-dkms \
+      librealsense2-utils librealsense2-dev
 
 # install gpg
 bash ${CURRENT_DIR}/30_gpg_install.sh $@

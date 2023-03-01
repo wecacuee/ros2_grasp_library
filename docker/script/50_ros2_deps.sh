@@ -7,13 +7,15 @@ else
         SUDO=""
 fi
 
-$SUDO apt-get install -y ros-$ROS_DISTRO-object-msgs \
+$SUDO apt-get install -y \
         python3-scipy \
         ros-$ROS_DISTRO-eigen3-cmake-module
 
 WORK_DIR=${DEPS_PATH}/../ros2_ws
 mkdir -p $WORK_DIR/src &&cd $WORK_DIR/src
 
+git clone --depth 1 https://github.com/intel/ros2_object_msgs
+git clone --depth 1 https://github.com/wg-perception/people --branch ros2
 git clone --depth 1 https://github.com/RoboticsYY/ros2_ur_description.git
 git clone --depth 1 https://github.com/RoboticsYY/handeye
 git clone --depth 1 https://github.com/RoboticsYY/criutils.git
